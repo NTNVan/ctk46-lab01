@@ -1,1 +1,4 @@
-# ctk46-lab01
+# \# CTK46 Lab01
+
+# This is my first Git project.
+
