@@ -6,7 +6,7 @@ import { Copy, ExternalLink, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
   const email = "2212490@dlu.edu.vn";
-  const githubUrl = "https://github.com/your-account";
+  const githubUrl = "https://github.com/NTNVan";
   const location = "Đà Lạt, Việt Nam";
 
   const [copied, setCopied] = useState(false);
