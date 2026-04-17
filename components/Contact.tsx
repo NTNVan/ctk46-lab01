@@ -1,30 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, ExternalLink, Mail, MapPin } from "lucide-react";
+import CopyToClipboardButton from "./CopyToClipboardButton";
 
 export default function Contact() {
   const email = "2212490@dlu.edu.vn";
   const githubUrl = "https://github.com/NTNVan";
   const location = "Đại học Đà Lạt, 01 Phù Đổng Thiên Vương, Đà Lạt";
-
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    if (!copied) return;
-    const t = window.setTimeout(() => setCopied(false), 1200);
-    return () => window.clearTimeout(t);
-  }, [copied]);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  };
 
   return (
     <motion.section
@@ -80,14 +63,13 @@ export default function Contact() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <div className="inline-flex rounded-full bg-linear-to-r from-purple-400/70 to-blue-400/70 p-px shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:from-purple-300/70 dark:to-blue-300/70">
-                <button
-                  type="button"
-                  onClick={copyEmail}
+                <CopyToClipboardButton
+                  value={email}
                   className="inline-flex items-center gap-2 rounded-full bg-white/60 px-5 py-3 text-sm font-semibold text-zinc-900 backdrop-blur-sm dark:bg-zinc-900/60 dark:text-zinc-100"
                 >
                   <Copy size={16} />
-                  {copied ? "Đã sao chép!" : "Email"}
-                </button>
+                  Email
+                </CopyToClipboardButton>
               </div>
 
               <div className="inline-flex rounded-full bg-linear-to-r from-purple-400/70 to-blue-400/70 p-px shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:from-purple-300/70 dark:to-blue-300/70">
