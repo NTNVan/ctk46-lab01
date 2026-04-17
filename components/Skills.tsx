@@ -136,7 +136,7 @@ export default function Skills() {
                   <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                     Kỹ năng cứng
                   </div>
-                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {hardSkills.map((s) => (
                       <SkillCard key={s.name} name={s.name} Icon={s.icon} />
                     ))}
@@ -149,7 +149,7 @@ export default function Skills() {
                   <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                     Kỹ năng mềm
                   </div>
-                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {softSkills.map((s) => (
                       <SkillCard key={s.name} name={s.name} Icon={s.icon} />
                     ))}

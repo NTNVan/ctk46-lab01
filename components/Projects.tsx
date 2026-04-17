@@ -112,7 +112,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-4">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((p) => {
             const Icon = p.icon;
             return (
