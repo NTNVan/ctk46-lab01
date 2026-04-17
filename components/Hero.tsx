@@ -48,19 +48,10 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
         >
-          Xin chào! Mình là Vân
+          <span className="relative inline-block text-zinc-900 dark:bg-linear-to-r dark:from-purple-400 dark:to-blue-400 dark:bg-clip-text dark:text-transparent after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-1 after:h-px after:w-10 after:bg-linear-to-r after:from-purple-500 after:to-blue-500 after:opacity-40 after:transition-all after:duration-300 hover:after:w-full hover:after:opacity-70">
+            Nguyễn Trần Ngọc Vân
+          </span>
         </motion.h1>
-
-        <motion.p
-          className="mx-auto mt-4 max-w-2xl text-base text-zinc-700 dark:text-zinc-200"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        >
-          Mình là Vân – sinh viên ngành Công nghệ Thông tin. Mình yêu thích lập
-          trình Web, UI/UX và AI. Mục tiêu trở thành Fullstack Developer sử dụng
-          React & Next.js.
-        </motion.p>
 
         <motion.div
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
@@ -68,30 +59,36 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
         >
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md hover:brightness-110 dark:bg-zinc-100 dark:text-zinc-900"
-          >
-            <Folder size={16} />
-            View Projects
-          </Link>
+          <div className="inline-flex rounded-full bg-linear-to-r from-purple-400/70 to-blue-400/70 p-px shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:from-purple-300/70 dark:to-blue-300/70">
+            <Link
+              href="/#projects"
+              className="inline-flex items-center gap-2 rounded-full bg-white/60 px-5 py-3 text-sm font-semibold text-zinc-900 backdrop-blur-sm dark:bg-zinc-900/60 dark:text-zinc-100"
+            >
+              <Folder size={16} />
+              Xem dự án
+            </Link>
+          </div>
 
-          <a
-            href="/cv.pdf"
-            download
-            className="inline-flex items-center gap-2 rounded-full bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm ring-1 ring-white/40 transition hover:shadow-md dark:bg-zinc-900/40 dark:text-zinc-100 dark:ring-zinc-800"
-          >
-            <Download size={16} />
-            Download CV
-          </a>
+          <div className="inline-flex rounded-full bg-linear-to-r from-purple-400/70 to-blue-400/70 p-px shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:from-purple-300/70 dark:to-blue-300/70">
+            <a
+              href="/cv.pdf"
+              download
+              className="inline-flex items-center gap-2 rounded-full bg-white/60 px-5 py-3 text-sm font-semibold text-zinc-900 backdrop-blur-sm dark:bg-zinc-900/60 dark:text-zinc-100"
+            >
+              <Download size={16} />
+              Tải CV
+            </a>
+          </div>
 
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-white/40 px-5 py-3 text-sm font-semibold text-zinc-900 ring-1 ring-white/30 transition hover:bg-white/70 hover:shadow-sm dark:bg-zinc-900/20 dark:text-zinc-100 dark:ring-zinc-800"
-          >
-            <Mail size={16} />
-            Contact Me
-          </Link>
+          <div className="inline-flex rounded-full bg-linear-to-r from-purple-400/70 to-blue-400/70 p-px shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:from-purple-300/70 dark:to-blue-300/70">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-white/60 px-5 py-3 text-sm font-semibold text-zinc-900 backdrop-blur-sm dark:bg-zinc-900/60 dark:text-zinc-100"
+            >
+              <Mail size={16} />
+              Liên hệ
+            </Link>
+          </div>
         </motion.div>
       </div>
     </motion.section>

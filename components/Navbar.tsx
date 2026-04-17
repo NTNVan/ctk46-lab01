@@ -4,7 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
-import { Folder, Home, Mail, Moon, Sun, User, Zap } from "lucide-react";
+import {
+  BookOpen,
+  Folder,
+  Home,
+  Mail,
+  Moon,
+  Sun,
+  User,
+  Zap,
+} from "lucide-react";
 
 export default function Navbar() {
   const path = usePathname();
@@ -14,11 +23,18 @@ export default function Navbar() {
 
   const items = useMemo(
     () => [
-      { id: "home", href: "/#home", label: "Home", icon: Home },
-      { id: "about", href: "/#about", label: "About", icon: User },
-      { id: "skills", href: "/#skills", label: "Skills", icon: Zap },
-      { id: "projects", href: "/#projects", label: "Projects", icon: Folder },
-      { id: "contact", href: "/#contact", label: "Contact", icon: Mail },
+      { id: "home", href: "/#home", label: "Trang chủ", icon: Home },
+      { id: "about", href: "/#about", label: "Giới thiệu", icon: User },
+      { id: "skills", href: "/#skills", label: "Kỹ năng", icon: Zap },
+      { id: "projects", href: "/#projects", label: "Dự án", icon: Folder },
+      { id: "contact", href: "/#contact", label: "Liên hệ", icon: Mail },
+      {
+        id: "blog",
+        href: "/blog",
+        label: "Blog",
+        icon: BookOpen,
+        prefetch: false,
+      },
     ],
     [],
   );
@@ -99,18 +115,22 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-4 px-4 py-3">
         <Link href="/" className="font-bold text-base tracking-tight">
-          Vân Portfolio
+          ngocjvaan
         </Link>
 
         <div className="hidden sm:flex items-center gap-2">
           {items.map((item) => {
             const Icon = item.icon;
-            const active = path === "/" ? activeSection === item.id : false;
+            const active =
+              path === "/"
+                ? activeSection === item.id
+                : item.id === "blog" && path.startsWith("/blog");
 
             return (
               <Link
                 key={item.id}
                 href={item.href}
+                prefetch={item.prefetch}
                 onClick={onNavClick(item.id)}
                 className={
                   "flex items-center gap-2 rounded-full px-3 py-2 text-sm transition " +
@@ -140,7 +160,7 @@ export default function Navbar() {
               aria-pressed={!isDark}
             >
               <Sun size={14} />
-              Pastel
+              Sáng
             </button>
             <button
               type="button"
@@ -154,7 +174,7 @@ export default function Navbar() {
               aria-pressed={isDark}
             >
               <Moon size={14} />
-              Dark
+              Tối
             </button>
           </div>
         </div>
