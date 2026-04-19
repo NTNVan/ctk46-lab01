@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Atom,
   BookOpen,
@@ -68,13 +68,10 @@ export default function Skills() {
     selectedFilter === "Tất cả" || selectedFilter === "Kỹ năng mềm";
 
   const selectedLabel = selectedFilter;
-  const measureRef = useRef<HTMLSpanElement | null>(null);
-  const [selectWidth, setSelectWidth] = useState<number>(76);
-
-  useLayoutEffect(() => {
-    const width = measureRef.current?.offsetWidth;
-    if (!width) return;
-    setSelectWidth(Math.ceil(width) + 26);
+  const selectWidth = useMemo(() => {
+    // Approximate width by character count to avoid DOM measuring effects.
+    const approx = selectedLabel.length * 8 + 36;
+    return Math.max(76, approx);
   }, [selectedLabel]);
 
   return (
@@ -100,12 +97,6 @@ export default function Skills() {
             <div className="inline-flex rounded-full bg-linear-to-r from-purple-400/70 to-blue-400/70 p-px shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:from-purple-300/70 dark:to-blue-300/70">
               <div className="relative inline-flex items-center gap-1.5 rounded-full bg-white/60 px-3 py-1.5 text-xs font-semibold text-zinc-700 backdrop-blur-sm dark:bg-zinc-900/60 dark:text-zinc-200">
                 <Layers size={14} />
-                <span
-                  className="pointer-events-none absolute -z-10 h-0 overflow-hidden whitespace-pre text-xs font-semibold"
-                  ref={measureRef}
-                >
-                  {selectedLabel}
-                </span>
                 <select
                   aria-label="Lọc kỹ năng"
                   value={selectedFilter}

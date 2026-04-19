@@ -1,16 +1,11 @@
 import Link from "next/link";
 
 import DebugErrorTrigger from "./DebugErrorTrigger";
+import type { Post } from "@/src/types/post";
 
-interface ApiPost {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-async function getPosts(): Promise<ApiPost[]> {
+async function getPosts(): Promise<Post[]> {
   const url = "https://jsonplaceholder.typicode.com/posts";
+  // BTH3 (Phần 1.6): thử đổi giữa `fetch(url)` và `fetch(url, { cache: 'no-store' })`.
   const response = await fetch(url, { cache: "no-store" });
 
   if (!response.ok) {
@@ -29,7 +24,7 @@ export default async function BlogPage() {
     await sleep(800);
   }
 
-  const posts = await getPosts();
+  const posts = (await getPosts()).slice(0, 10);
 
   return (
     <main className="space-y-6">
@@ -41,7 +36,7 @@ export default async function BlogPage() {
           </span>
         </h1>
         <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-200">
-          Danh sách bài viết (mock data).
+          Danh sách bài viết (JSONPlaceholder).
         </p>
       </header>
 

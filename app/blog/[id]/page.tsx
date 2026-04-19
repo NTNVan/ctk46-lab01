@@ -2,28 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-interface ApiPost {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import type { Comment, Post, User } from "@/src/types/post";
 
-interface ApiUser {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
-
-interface ApiComment {
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
-
-async function getPost(postId: number): Promise<ApiPost | null> {
+async function getPost(postId: number): Promise<Post | null> {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postId}`,
     { cache: "no-store" },
@@ -36,7 +17,7 @@ async function getPost(postId: number): Promise<ApiPost | null> {
   return response.json();
 }
 
-async function getUser(userId: number): Promise<ApiUser | null> {
+async function getUser(userId: number): Promise<User | null> {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${userId}`,
     { cache: "no-store" },
@@ -49,7 +30,7 @@ async function getUser(userId: number): Promise<ApiUser | null> {
   return response.json();
 }
 
-async function getComments(postId: number): Promise<ApiComment[]> {
+async function getComments(postId: number): Promise<Comment[]> {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postId}/comments`,
     { cache: "no-store" },
@@ -100,16 +81,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  // BTH3 (Bài tập 3): chạy song song `getPost()` và `getUser()`.
+  // JSONPlaceholder có pattern userId theo postId (1-10 -> user 1, 11-20 -> user 2, ...)
+  // nên có thể đoán userId để fetch user song song. Nếu đoán sai, fallback theo post.userId.
   const guessedUserId = Math.min(10, Math.max(1, Math.ceil(postId / 10)));
-  const [post, user, comments] = await Promise.all([
+  const [post, guessedUser, comments] = await Promise.all([
     getPost(postId),
     getUser(guessedUserId),
     getComments(postId),
   ]);
 
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
+
+  const user =
+    guessedUser && guessedUser.id === post.userId
+      ? guessedUser
+      : await getUser(post.userId);
 
   return (
     <main className="space-y-6">

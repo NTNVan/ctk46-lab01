@@ -36,7 +36,7 @@ export default function DebugErrorTrigger() {
     if (!checked) return null;
 
     if (shouldThrow) {
-      const value: any = undefined;
+      const value = undefined as unknown as { toString: () => string };
       value.toString();
     }
   }

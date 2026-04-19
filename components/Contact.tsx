@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Copy, ExternalLink, Mail, MapPin } from "lucide-react";
 import CopyToClipboardButton from "./CopyToClipboardButton";
+import ContactForm from "./ContactForm";
 
 export default function Contact() {
   const email = "2212490@dlu.edu.vn";
@@ -85,7 +86,18 @@ export default function Contact() {
               </div>
             </div>
 
-            <p className="mt-4 text-xs text-zinc-600 dark:text-zinc-300"></p>
+            <div className="mt-10 rounded-2xl bg-white/60 p-6 ring-1 ring-white/40 dark:bg-zinc-900/60 dark:ring-zinc-800">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                Gửi tin nhắn
+              </h3>
+              <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-200">
+                Form demo (Server Actions + validation).
+              </p>
+
+              <div className="mt-4">
+                <ContactForm />
+              </div>
+            </div>
           </div>
         </div>
       </div>

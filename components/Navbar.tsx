@@ -6,9 +6,11 @@ import { useEffect, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import {
   BookOpen,
+  Bug,
   Folder,
   Home,
   Mail,
+  MessageSquare,
   Moon,
   Sun,
   User,
@@ -33,6 +35,20 @@ export default function Navbar() {
         href: "/blog",
         label: "Blog",
         icon: BookOpen,
+        prefetch: false,
+      },
+      {
+        id: "guestbook",
+        href: "/guestbook",
+        label: "Guestbook",
+        icon: MessageSquare,
+        prefetch: false,
+      },
+      {
+        id: "pokemon",
+        href: "/pokemon",
+        label: "Pokémon",
+        icon: Bug,
         prefetch: false,
       },
     ],
@@ -124,7 +140,9 @@ export default function Navbar() {
             const active =
               path === "/"
                 ? activeSection === item.id
-                : item.id === "blog" && path.startsWith("/blog");
+                : (item.id === "blog" && path.startsWith("/blog")) ||
+                  (item.id === "guestbook" && path.startsWith("/guestbook")) ||
+                  (item.id === "pokemon" && path.startsWith("/pokemon"));
 
             return (
               <Link

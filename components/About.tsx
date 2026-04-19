@@ -1,8 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
+function initials(name: string) {
+  const trimmed = name.trim();
+  if (!trimmed) return "?";
+  return trimmed[0]?.toUpperCase() ?? "?";
+}
 
 export default function About() {
+  const displayName = "Nguyễn Trần Ngọc Vân";
+
   return (
     <motion.section
       id="about"
@@ -23,17 +32,22 @@ export default function About() {
           <div className="mt-6 rounded-3xl bg-transparent p-8 ring-1 ring-white/40 transition duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-xl group-hover:ring-2 group-hover:ring-white/70 dark:ring-zinc-800 dark:group-hover:ring-zinc-600">
             <div className="space-y-6">
               <div className="rounded-2xl bg-white/60 p-6 ring-1 ring-white/40 transition duration-200 hover:-translate-y-0.5 hover:shadow-md dark:bg-zinc-900/60 dark:ring-zinc-800">
-                <p className="text-zinc-700 dark:text-zinc-200">
-                  Xin chào! Tôi là{" "}
-                  <strong className="font-semibold">
-                    Nguyễn Trần Ngọc Vân
-                  </strong>
-                  ,
-                  <br />
-                  Sinh viên năm 4 ngành Công nghệ Thông tin tại Đại học Đà Lạt.
-                  <br />
-                  Đam mê phát triển web và các công nghệ mới
-                </p>
+                <div className="flex items-start gap-4">
+                  <Avatar>
+                    <AvatarFallback>{initials(displayName)}</AvatarFallback>
+                  </Avatar>
+
+                  <p className="text-zinc-700 dark:text-zinc-200">
+                    Xin chào! Tôi là{" "}
+                    <strong className="font-semibold">{displayName}</strong>
+                    ,
+                    <br />
+                    Sinh viên năm 4 ngành Công nghệ Thông tin tại Đại học Đà
+                    Lạt.
+                    <br />
+                    Đam mê phát triển web và các công nghệ mới
+                  </p>
+                </div>
               </div>
 
               <div className="grid gap-6 md:grid-cols-2">
